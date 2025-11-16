@@ -1,0 +1,176 @@
+/* src/components/Pages/Resources.css */
+
+.resources-page {
+    padding: 2rem;
+    background-color: #f9f5ff;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .resources-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .resources-header h1 {
+    font-size: 2rem;
+    color: #7a4e9e;
+  }
+  
+  .resources-header p {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .resources-share-btn-container {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* 🌸 Pink Share Resource Button */
+  .resources-share-resource-button {
+    background-color: #ffb3d1;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .resources-share-resource-button:hover {
+    background-color: #ff94c2;
+  }
+  
+  /* 🔍 Search Bar */
+  .resources-search-bar-container {
+    margin: 1.5rem auto;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .resources-search-bar-container input {
+    padding: 0.6rem 1rem;
+    width: 70%;
+    max-width: 500px;
+    border: 2px dashed #cdb4db;
+    border-radius: 6px;
+    background-color: #fff8ff;
+    font-size: 1rem;
+    outline: none;
+  }
+  
+  /* 📌 Tab Buttons */
+  .resources-tab-buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    gap: 1rem;
+  }
+  
+  .resources-tab-buttons button {
+    padding: 0.5rem 1.2rem;
+    border: none;
+    background-color: #f3e8ff;
+    border-radius: 20px;
+    color: #7a4e9e;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  .resources-tab-buttons button.active,
+  .resources-tab-buttons button:hover {
+    background-color: #e0b3ff;
+    border-color: #b56dda;
+    color: white;
+  }
+  
+  /* 📘 Resource Cards */
+  .resources-resource-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 1.5rem;
+    padding-top: 1rem;
+  }
+  
+  .resources-resource-card {
+    background-color: #fff0fb;
+    border: 2px dashed #dfa9e5;
+    padding: 1rem;
+    border-radius: 8px;
+    transition: transform 0.2s ease;
+  }
+  
+  .resources-resource-card:hover {
+    transform: scale(1.02);
+  }
+  
+  .resources-resource-card h3 {
+    color: #7a4e9e;
+    margin-bottom: 0.5rem;
+  }
+  
+  .resources-resource-card p {
+    color: #444;
+    font-size: 0.95rem;
+  }
+  
+  .resources-resource-card a {
+    display: inline-block;
+    margin-top: 0.5rem;
+    color: #d94da6;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .resources-resource-card a:hover {
+    text-decoration: underline;
+  }
+  
+  /* 🔒 Login Prompt */
+  .resources-login-message-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+  }
+  
+  .resources-login-message-box {
+    background-color: #fff5fd;
+    border: 2px dashed #e2a4cc;
+    padding: 2rem;
+    text-align: center;
+    border-radius: 10px;
+  }
+  
+  .resources-login-message-box h3 {
+    font-size: 1.4rem;
+    color: #814fb3;
+    margin-bottom: 0.8rem;
+  }
+  
+  .resources-login-message-box p {
+    color: #6f6f6f;
+    font-size: 1rem;
+    margin-bottom: 1.2rem;
+  }
+  
+  .resources-soft-auth-btn {
+    background-color: #ffb3d1;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 6px;
+    margin-top: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .resources-soft-auth-btn:hover {
+    background-color: #ff94c2;
+  }
+  

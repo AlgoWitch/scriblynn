@@ -1,0 +1,114 @@
+/* Navbar Container */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e6e6fa; /* pastel lavender */
+  padding: 1rem 2rem;
+  flex-wrap: wrap;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Logo */
+.navbar-logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #7b2cbf;
+  font-family: 'Segoe UI', sans-serif;
+  text-decoration: none;
+}
+
+/* Navigation links container */
+.navbar-links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Individual nav link */
+.nav-link {
+  text-decoration: none;
+  color: #4b106e;
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0.4rem 0.8rem;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: #c77dff;
+}
+
+/* Active link style */
+.nav-link.active {
+  color: #fff;
+  background-color: #cba0f5;
+  border-radius: 12px;
+}
+
+/* Auth section: Login / Signup */
+.navbar-auth {
+  display: flex;
+  gap: 0.8rem;
+}
+
+/* Cute Login and Signup Buttons */
+.navbar-auth .nav-link {
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  background-color: #f7c8e0; /* pastel pink */
+  color: #4b106e;
+  font-weight: 600;
+  transition: background-color 0.3s, transform 0.2s;
+  border: none;
+}
+
+.navbar-auth .nav-link:hover {
+  background-color: #fce7f3; /* lighter pink */
+  transform: scale(1.05);
+  color: #7b2cbf;
+}
+
+.navbar-auth .nav-link.active {
+  background-color: #e0b0ff; /* pastel lavender when active */
+  color: #fff;
+}
+
+/* Hamburger Menu Button */
+.navbar-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #7b2cbf;
+  cursor: pointer;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar-links,
+  .navbar-auth {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .navbar-links.active,
+  .navbar-auth.active {
+    display: flex;
+  }
+
+  .navbar-toggle {
+    display: block;
+    align-self: flex-end;
+  }
+}

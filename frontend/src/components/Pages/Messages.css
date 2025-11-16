@@ -1,0 +1,124 @@
+/* src/components/Pages/Messages.css */
+
+.messages-page {
+    padding: 2rem;
+    background-color: #fef7ff;
+    font-family: 'Segoe UI', sans-serif;
+    min-height: 100vh;
+  }
+  
+  .messages-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .messages-header h1 {
+    font-size: 2.2rem;
+    color: #6b4c9a;
+  }
+  
+  .messages-header p {
+    color: #666;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+  }
+  
+  .soft-auth-msg {
+    text-align: center;
+    padding: 3rem 1rem;
+    border-radius: 16px;
+    background-color: #fef0fb;
+    border: 2px dashed #dda6ff;
+    margin: 2rem auto;
+    max-width: 500px;
+  }
+  
+  .soft-auth-msg h2 {
+    color: #703e9e;
+    margin-bottom: 0.5rem;
+  }
+  
+  .soft-auth-msg p {
+    color: #777;
+    margin-bottom: 1rem;
+  }
+  
+  .soft-auth-btn {
+    background-color: #c391f3;
+    border: none;
+    border-radius: 25px;
+    padding: 0.8rem 1.5rem;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .soft-auth-btn:hover {
+    background-color: #a36ee0;
+  }
+  
+  .chat-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .chat-card {
+    display: flex;
+    align-items: center;
+    background-color: #fff0fa;
+    border: 2px dashed #dda6ff;
+    border-radius: 16px;
+    padding: 0.8rem 1rem;
+    box-shadow: 0 3px 8px rgba(165, 125, 225, 0.1);
+    transition: background 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .chat-card:hover {
+    background-color: #f9e8ff;
+  }
+  
+  .chat-card img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 1rem;
+  }
+  
+  .chat-info h3 {
+    margin: 0;
+    font-size: 1rem;
+    color: #703e9e;
+  }
+  
+  .chat-info p {
+    margin: 0.2rem 0 0;
+    color: #555;
+    font-size: 0.9rem;
+  }
+  
+  /* Responsive */
+  @media (max-width: 600px) {
+    .chat-card {
+      padding: 0.6rem;
+    }
+  
+    .chat-card img {
+      width: 40px;
+      height: 40px;
+    }
+  
+    .chat-info h3 {
+      font-size: 0.95rem;
+    }
+  
+    .chat-info p {
+      font-size: 0.8rem;
+    }
+  }
+  

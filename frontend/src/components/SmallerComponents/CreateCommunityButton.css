@@ -1,0 +1,89 @@
+/* src/components/SmallerComponents/CreateCommunityButton.css */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(130, 96, 168, 0.2);
+    backdrop-filter: blur(3px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+  
+  .modal-box {
+    background-color: #fff0fa;
+    border: 2px dashed #dda6ff;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 6px 20px rgba(165, 125, 225, 0.15);
+    max-width: 450px;
+    width: 90%;
+    font-family: 'Segoe UI', sans-serif;
+    position: relative;
+  }
+  
+  .modal-box h2 {
+    margin-top: 0;
+    color: #703e9e;
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  .modal-box input,
+  .modal-box textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #d8c9f1;
+    border-radius: 12px;
+    font-size: 1rem;
+    background-color: #fdf7ff;
+    color: #4b007d;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .modal-box textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  .modal-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  
+  .modal-actions button {
+    flex: 1;
+    padding: 0.7rem 1rem;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .modal-actions button[type='submit'] {
+    background-color: #bc84ff;
+    color: white;
+  }
+  
+  .modal-actions button[type='submit']:hover {
+    background-color: #a065db;
+  }
+  
+  .cancel-btn {
+    background-color: #f5d0f5;
+    color: #703e9e;
+  }
+  
+  .cancel-btn:hover {
+    background-color: #e4b3ea;
+  }
+  

@@ -1,0 +1,110 @@
+.create-post-btn {
+    background-color: #f290b7;;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 0.6rem 1.4rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(108, 79, 163, 0.2);
+    transition: background 0.3s ease;
+  }
+  
+  .create-post-btn:hover {
+    background-color: #bf6288;
+  }
+  
+  /* Modal styles */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(110, 84, 157, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    background-color: #fff0fa;
+    border-radius: 15px;
+    padding: 2rem;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 8px 20px rgba(100, 70, 150, 0.3);
+    position: relative;
+  }
+  
+  .modal-content h2 {
+    color: #703e9e;
+    margin-bottom: 1rem;
+  }
+  
+  .modal-content input[type="text"],
+  .modal-content textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 10px;
+    border: 1px solid #d8c9f1;
+    margin-bottom: 1rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    resize: none;
+  }
+  
+  .modal-content textarea {
+    min-height: 100px;
+  }
+  
+  .anonymous-checkbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .anonymous-checkbox input[type="checkbox"] {
+    margin-right: 0.5rem;
+    transform: scale(1.2);
+    cursor: pointer;
+  }
+  
+  .anonymous-checkbox label {
+    color: #5b378b;
+    font-size: 0.95rem;
+    cursor: pointer;
+  }
+  
+  /* Post and Cancel buttons */
+  .modal-content button {
+    padding: 0.6rem 1.2rem;
+    border-radius: 15px;
+    border: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    margin-right: 0.6rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .modal-content button:first-of-type {
+    background-color: #bc84ff;
+    color: white;
+  }
+  
+  .modal-content button:first-of-type:hover {
+    background-color: #a065db;
+  }
+  
+  .modal-content button:last-of-type {
+    background-color: #f2e5ff;
+    color: #703e9e;
+  }
+  
+  .modal-content button:last-of-type:hover {
+    background-color: #decdf2;
+  }
+  

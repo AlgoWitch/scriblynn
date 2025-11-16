@@ -1,0 +1,626 @@
+{
+  "id": 1,
+  "name": "John Doe",
+  "profilePic": "https://i.pinimg.com/originals/7c/d2/f3/7cd2f38db862b2c1147b75deaf0f52e6.jpg",
+  "bio": "A passionate writer and thinker.",
+  "postsCount": 12,
+  "likesReceived": 87,
+  "followersCount": 45,
+  "followingCount": 18,
+  "joinedCommunities": 5,
+  "bookmarkedPosts": 7,
+
+  
+    "posts": [
+      {
+        "id": 1,
+        "title": "Open thoughts",
+        "content": "This is a named post",
+        "anonymous": false,
+        "likes": 42,
+        "createdAt": "2024-04-15",
+        "tags": ["thoughts"]
+      },
+      {
+        "id": 2,
+        "title": "Hidden truth",
+        "content": "This is an anonymous post",
+        "anonymous": true,
+        "likes": 15,
+        "createdAt": "2024-05-22",
+        "tags": ["confession"]
+      },
+      {
+        "id": 3,
+        "title": "A Quiet Victory",
+        "content": "Sometimes winning means walking away.",
+        "anonymous": false,
+        "likes": 23,
+        "createdAt": "2024-06-01",
+        "tags": ["growth", "life"]
+      },
+      {
+        "id": 4,
+        "title": "No One Knows",
+        "content": "Everyone thinks I’m doing great. I’m not.",
+        "anonymous": true,
+        "likes": 38,
+        "createdAt": "2024-06-03",
+        "tags": ["mental health", "anonymous"]
+      },
+      {
+        "id": 5,
+        "title": "Sunsets & Starts",
+        "content": "New beginnings often look like painful endings.",
+        "anonymous": false,
+        "likes": 47,
+        "createdAt": "2024-06-05",
+        "tags": ["life", "change"]
+      },
+      {
+        "id": 6,
+        "title": "Crushed",
+        "content": "Failed my exam. Again. I don’t know how to face them.",
+        "anonymous": true,
+        "likes": 52,
+        "createdAt": "2024-06-07",
+        "tags": ["failure", "confession"]
+      },
+      {
+        "id": 7,
+        "title": "The Messy Middle",
+        "content": "Nobody talks about how hard the 'in-between' phase is.",
+        "anonymous": false,
+        "likes": 33,
+        "createdAt": "2024-06-08",
+        "tags": ["honesty", "thoughts"]
+      },
+      {
+        "id": 8,
+        "title": "Late Night Panic",
+        "content": "I cried myself to sleep last night. Again.",
+        "anonymous": true,
+        "likes": 61,
+        "createdAt": "2024-06-10",
+        "tags": ["mental health", "confession"]
+      },
+      {
+        "id": 9,
+        "title": "Tiny Wins",
+        "content": "I got out of bed today. That’s enough.",
+        "anonymous": true,
+        "likes": 89,
+        "createdAt": "2024-06-11",
+        "tags": ["mental health", "tiny wins"]
+      },
+      {
+        "id": 10,
+        "title": "Peace in Chaos",
+        "content": "Found a moment of silence in the loudest place.",
+        "anonymous": false,
+        "likes": 17,
+        "createdAt": "2024-06-13",
+        "tags": ["reflection"]
+      },
+      {
+        "id": 11,
+        "title": "Not Okay",
+        "content": "Pretending to be fine is exhausting.",
+        "anonymous": true,
+        "likes": 74,
+        "createdAt": "2024-06-14",
+        "tags": ["mental health", "anonymous"]
+      },
+      {
+        "id": 12,
+        "title": "Gratitude List",
+        "content": "Today I’m grateful for my friend, chai, and evening breeze.",
+        "anonymous": false,
+        "likes": 36,
+        "createdAt": "2024-06-16",
+        "tags": ["gratitude", "positivity"]
+      }
+      
+    ],
+  
+
+  "likedPosts": [
+    {
+      "id": 201,
+      "title": "Top 5 Study Hacks for Finals",
+      "author": "Jane Smith",
+      "likes": 50
+    },
+    {
+      "id": 202,
+      "title": "Dealing with Exam Stress",
+      "author": "Alex Johnson",
+      "likes": 35
+    },
+    {
+      "id": 203,
+      "title": "Why I Switched Majors",
+      "author": "Chris Liu",
+      "likes": 40
+    }
+  ],
+
+  "likedCommunities": [
+    {
+      "id": 1,
+      "name": "Tech Enthusiasts",
+      "description": "A group for tech lovers."
+    },
+    {
+      "id": 2,
+      "name": "Mental Health Matters",
+      "description": "A safe space to share and support."
+    },
+    {
+      "id": 3,
+      "name": "Writers Club",
+      "description": "For those who write to express, reflect, and explore."
+    },
+    {
+      "id": 4,
+      "name": "Study Buddies",
+      "description": "Form study groups and stay accountable."
+    },
+    {
+      "id": 5,
+      "name": "Gamers at Campus",
+      "description": "Chill and connect over gaming."
+    }
+  ],
+
+  "createdCommunities": [
+    {
+      "id": 6,
+      "name": "Creative Coders",
+      "description": "Merging creativity with code."
+    },
+    {
+      "id": 7,
+      "name": "Campus Journalists",
+      "description": "Report, write, and reflect student life."
+    }
+  ],
+
+  "chats": [
+    {
+      "withUser": {
+        "id": 2,
+        "name": "Jane Smith",
+        "profilePic": "data:image/jpeg;base64,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"
+      },
+      "conversationId": 501,
+      "messages": [
+        {
+          "sender": "John Doe",
+          "message": "Hey Jane! How's your week going?",
+          "timestamp": "2025-05-03T08:30:00Z"
+        },
+        {
+          "sender": "Jane Smith",
+          "message": "Pretty good! Just prepping for exams. You?",
+          "timestamp": "2025-05-03T08:45:00Z"
+        },
+        {
+          "sender": "John Doe",
+          "message": "Same here. Let's ace them together!",
+          "timestamp": "2025-05-03T08:50:00Z"
+        }
+      ]
+    },
+    {
+      "withUser": {
+        "id": 3,
+        "name": "Alex Johnson",
+        "profilePic": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3tzGh_8fgG0kuFPxwh_vvey4zzlrDz5nz7A&s"
+      },
+      "conversationId": 502,
+      "messages": [
+        {
+          "sender": "Alex Johnson",
+          "message": "Wanna co-write a blog on student burnout?",
+          "timestamp": "2025-05-02T16:00:00Z"
+        },
+        {
+          "sender": "John Doe",
+          "message": "That sounds great! I’ll send over some notes tonight.",
+          "timestamp": "2025-05-02T16:15:00Z"
+        }
+      ]
+    },
+    {
+      "withUser": {
+        "id": 4,
+        "name": "Priya Mehta",
+        "profilePic": "https://randomuser.me/api/portraits/women/44.jpg"
+      },
+      "conversationId": 503,
+      "messages": [
+        {
+          "sender": "Priya Mehta",
+          "message": "Hey! Did you get the notes for DBMS?",
+          "timestamp": "2025-05-04T10:00:00Z"
+        },
+        {
+          "sender": "John Doe",
+          "message": "Yep, I’ll share them in a minute.",
+          "timestamp": "2025-05-04T10:02:00Z"
+        }
+      ]
+    },
+    {
+      "withUser": {
+        "id": 5,
+        "name": "Rahul Verma",
+        "profilePic": "https://randomuser.me/api/portraits/men/45.jpg"
+      },
+      "conversationId": 504,
+      "messages": [
+        {
+          "sender": "Rahul Verma",
+          "message": "Let’s meet for the hackathon prep today?",
+          "timestamp": "2025-05-05T14:00:00Z"
+        },
+        {
+          "sender": "John Doe",
+          "message": "Sure! I’m free after 5 PM.",
+          "timestamp": "2025-05-05T14:05:00Z"
+        }
+      ]
+    },
+    {
+      "withUser": {
+        "id": 6,
+        "name": "Ananya Roy",
+        "profilePic": "https://randomuser.me/api/portraits/women/46.jpg"
+      },
+      "conversationId": 505,
+      "messages": [
+        {
+          "sender": "Ananya Roy",
+          "message": "Can you review my essay tonight?",
+          "timestamp": "2025-05-06T19:15:00Z"
+        },
+        {
+          "sender": "John Doe",
+          "message": "Sure, send it over.",
+          "timestamp": "2025-05-06T19:16:00Z"
+        }
+      ]
+    },
+    {
+      "withUser": {
+        "id": 7,
+        "name": "Kabir Shah",
+        "profilePic": "https://randomuser.me/api/portraits/men/47.jpg"
+      },
+      "conversationId": 506,
+      "messages": [
+        {
+          "sender": "Kabir Shah",
+          "message": "Bro, the CS project deadline got extended!",
+          "timestamp": "2025-05-07T09:30:00Z"
+        },
+        {
+          "sender": "John Doe",
+          "message": "No way! That's a relief 😅",
+          "timestamp": "2025-05-07T09:31:00Z"
+        }
+      ]
+    },
+    {
+      "withUser": {
+        "id": 8,
+        "name": "Sneha Kapoor",
+        "profilePic": "https://randomuser.me/api/portraits/women/48.jpg"
+      },
+      "conversationId": 507,
+      "messages": [
+        {
+          "sender": "Sneha Kapoor",
+          "message": "Can you help with Python tomorrow?",
+          "timestamp": "2025-05-08T18:00:00Z"
+        },
+        {
+          "sender": "John Doe",
+          "message": "Of course! Meet after class?",
+          "timestamp": "2025-05-08T18:05:00Z"
+        }
+      ]
+    },
+    {
+      "withUser": {
+        "id": 9,
+        "name": "Amit Sharma",
+        "profilePic": "https://randomuser.me/api/portraits/men/49.jpg"
+      },
+      "conversationId": 508,
+      "messages": [
+        {
+          "sender": "Amit Sharma",
+          "message": "Don’t forget the group meeting at 4!",
+          "timestamp": "2025-05-09T13:45:00Z"
+        },
+        {
+          "sender": "John Doe",
+          "message": "Noted. See you there!",
+          "timestamp": "2025-05-09T13:50:00Z"
+        }
+      ]
+    },
+    {
+      "withUser": {
+        "id": 10,
+        "name": "Divya Nair",
+        "profilePic": "https://randomuser.me/api/portraits/women/50.jpg"
+      },
+      "conversationId": 509,
+      "messages": [
+        {
+          "sender": "Divya Nair",
+          "message": "Should we present first or last?",
+          "timestamp": "2025-05-10T11:00:00Z"
+        },
+        {
+          "sender": "John Doe",
+          "message": "Let’s go last so we can polish slides.",
+          "timestamp": "2025-05-10T11:03:00Z"
+        }
+      ]
+    },
+    {
+      "withUser": {
+        "id": 11,
+        "name": "Nikhil Anand",
+        "profilePic": "https://randomuser.me/api/portraits/men/51.jpg"
+      },
+      "conversationId": 510,
+      "messages": [
+        {
+          "sender": "Nikhil Anand",
+          "message": "Are you attending the seminar today?",
+          "timestamp": "2025-05-11T08:10:00Z"
+        },
+        {
+          "sender": "John Doe",
+          "message": "Yes, I’ll be there in 10.",
+          "timestamp": "2025-05-11T08:15:00Z"
+        }
+      ]
+    },
+    {
+      "withUser": {
+        "id": 12,
+        "name": "Riya Malhotra",
+        "profilePic": "https://randomuser.me/api/portraits/women/52.jpg"
+      },
+      "conversationId": 511,
+      "messages": [
+        {
+          "sender": "Riya Malhotra",
+          "message": "Your post on burnout really resonated with me.",
+          "timestamp": "2025-05-12T17:00:00Z"
+        },
+        {
+          "sender": "John Doe",
+          "message": "Thanks Riya! That means a lot 😊",
+          "timestamp": "2025-05-12T17:10:00Z"
+        }
+      ]
+    },
+    {
+      "withUser": {
+        "id": 13,
+        "name": "Zaid Khan",
+        "profilePic": "https://randomuser.me/api/portraits/men/53.jpg"
+      },
+      "conversationId": 512,
+      "messages": [
+        {
+          "sender": "Zaid Khan",
+          "message": "Check out the new community dashboard design?",
+          "timestamp": "2025-05-13T21:00:00Z"
+        },
+        {
+          "sender": "John Doe",
+          "message": "Looks awesome! We should push it live.",
+          "timestamp": "2025-05-13T21:05:00Z"
+        }
+      ]
+    }
+    
+
+  ],
+
+  "followers": [
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "profilePic": "https://via.placeholder.com/150"
+    },
+    {
+      "id": 3,
+      "name": "Alex Johnson",
+      "profilePic": "https://via.placeholder.com/150"
+    },
+    {
+      "id": 4,
+      "name": "Chris Liu",
+      "profilePic": "https://via.placeholder.com/150"
+    }
+  ],
+
+  "following": [
+    {
+      "id": 5,
+      "name": "Sam Lee",
+      "profilePic": "https://via.placeholder.com/150"
+    },
+    {
+      "id": 6,
+      "name": "Sara Black",
+      "profilePic": "https://via.placeholder.com/150"
+    },
+    {
+      "id": 7,
+      "name": "Michael Brown",
+      "profilePic": "https://via.placeholder.com/150"
+    }
+  ],
+  "savedResources": [
+  {
+    "id": 101,
+    "title": "Complete DSA Roadmap",
+    "type": "roadmap",
+    "link": "https://example.com/dsa-roadmap",
+    "description": "A curated roadmap for mastering Data Structures and Algorithms.",
+    "uploadedBy": "Jane Smith",
+    "uploadedById": 2,
+    "date": "2025-06-20",
+    "tags": ["dsa", "programming", "roadmap"]
+  },
+  {
+    "id": 102,
+    "title": "Mental Health Guidebook",
+    "type": "book",
+    "link": "https://example.com/mental-health",
+    "description": "An easy-to-follow book on managing mental well-being.",
+    "uploadedBy": "Chris Liu",
+    "uploadedById": 4,
+    "date": "2025-07-01",
+    "tags": ["mental health", "well-being", "guide"]
+  },
+  {
+    "id": 109,
+    "title": "Git & GitHub Basics",
+    "type": "notes",
+    "link": "https://example.com/git-notes",
+    "description": "Concise notes on version control with Git & GitHub.",
+    "uploadedBy": "John Doe",
+    "uploadedById": 1,
+    "date": "2025-07-08",
+    "tags": ["git", "version control", "notes"]
+  },
+  {
+    "id": 110,
+    "title": "Computer Networks Roadmap",
+    "type": "roadmap",
+    "link": "https://example.com/networks-roadmap",
+    "description": "Detailed roadmap to learn computer networks step-by-step.",
+    "uploadedBy": "John Doe",
+    "uploadedById": 1,
+    "date": "2025-07-07",
+    "tags": ["networks", "roadmap", "systems"]
+  },
+  {
+    "id": 111,
+    "title": "Machine Learning PDF Notes",
+    "type": "notes",
+    "link": "https://example.com/ml-notes",
+    "description": "PDF notes covering all major ML concepts.",
+    "uploadedBy": "John Doe",
+    "uploadedById": 1,
+    "date": "2025-07-06",
+    "tags": ["ML", "notes", "AI"]
+  },
+  {
+    "id": 112,
+    "title": "Frontend Development Roadmap",
+    "type": "roadmap",
+    "link": "https://example.com/frontend-roadmap",
+    "description": "Everything you need to know to become a frontend developer.",
+    "uploadedBy": "John Doe",
+    "uploadedById": 1,
+    "date": "2025-07-05",
+    "tags": ["frontend", "roadmap", "web dev"]
+  },
+  {
+    "id": 113,
+    "title": "Compiler Design Short Notes",
+    "type": "notes",
+    "link": "https://example.com/compiler-notes",
+    "description": "Crisp and clear notes for compiler design concepts.",
+    "uploadedBy": "John Doe",
+    "uploadedById": 1,
+    "date": "2025-07-04",
+    "tags": ["compiler", "notes", "CS subjects"]
+  }
+],
+
+"uploadedResources": [
+  {
+    "id": 103,
+    "title": "First-Year Engineering Notes",
+    "type": "notes",
+    "link": "https://example.com/engg-notes",
+    "description": "Comprehensive notes for first-year students.",
+    "uploadedBy": "John Doe",
+    "uploadedById": 1,
+    "date": "2025-07-14",
+    "tags": ["engineering", "notes", "semester 1"]
+  },
+  {
+    "id": 104,
+    "title": "Python for Beginners Book",
+    "type": "book",
+    "link": "https://example.com/python-book",
+    "description": "A free beginner-friendly Python programming book.",
+    "uploadedBy": "John Doe",
+    "uploadedById": 1,
+    "date": "2025-07-13",
+    "tags": ["python", "programming", "book"]
+  },
+  {
+    "id": 105,
+    "title": "Data Structures Cheat Sheet",
+    "type": "notes",
+    "link": "https://example.com/dsa-cheatsheet",
+    "description": "Quick revision notes for important data structures.",
+    "uploadedBy": "John Doe",
+    "uploadedById": 1,
+    "date": "2025-07-12",
+    "tags": ["DSA", "cheatsheet", "revision"]
+  },
+  {
+    "id": 106,
+    "title": "Operating Systems Roadmap",
+    "type": "roadmap",
+    "link": "https://example.com/os-roadmap",
+    "description": "Step-by-step guide to mastering OS concepts.",
+    "uploadedBy": "John Doe",
+    "uploadedById": 1,
+    "date": "2025-07-11",
+    "tags": ["OS", "roadmap", "systems"]
+  },
+  {
+    "id": 107,
+    "title": "Database Schema Design Notes",
+    "type": "notes",
+    "link": "https://example.com/db-schema",
+    "description": "Helpful notes for designing efficient database schemas.",
+    "uploadedBy": "John Doe",
+    "uploadedById": 1,
+    "date": "2025-07-10",
+    "tags": ["DBMS", "notes", "database"]
+  },
+  {
+    "id": 108,
+    "title": "JavaScript Beginner Guide",
+    "type": "book",
+    "link": "https://example.com/js-guide",
+    "description": "Comprehensive beginner guide to JavaScript basics.",
+    "uploadedBy": "John Doe",
+    "uploadedById": 1,
+    "date": "2025-07-09",
+    "tags": ["javascript", "web", "frontend"]
+  }
+ 
+]
+
+
+
+}

@@ -1,0 +1,145 @@
+
+
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f7f7f7;
+}
+
+
+.hero-section {
+  background-color: #f2e6ff;
+  color: #4b007d;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.hero-section h1 {
+  font-size: 2.5rem;
+  color: #6c4fa3;
+}
+
+.hero-section p {
+  font-size: 1.2rem;
+  color: #4b4b4b;
+  margin-top: 1rem;
+}
+
+.hero-section button {
+  background-color: #f290b7;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  margin: 1rem;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.hero-section button:hover {
+  background-color: #bf6288;
+}
+
+/* Main Feed */
+.main-feed {
+  padding: 2rem;
+  background-color: #ffffff;
+}
+
+.main-feed h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: #6c4fa3;
+}
+
+
+.post-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+
+.home-post-card {
+  background-color: #faf5ff;
+  border: 1px solid #e2d8f3;
+  border-radius: 20px;
+  padding: 1.2rem;
+  box-shadow: 0 4px 8px rgba(108, 79, 163, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.home-post-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(108, 79, 163, 0.15);
+}
+
+.home-post-card h3 {
+  margin-top: 0;
+  color: #4b007d;
+  font-size: 1.2rem;
+}
+
+.home-post-card p {
+  color: #444;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  margin: 0.5rem 0 1rem;
+}
+
+.home-post-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #7a7a7a;
+  margin-bottom: 0.5rem;
+}
+.home-author {
+  margin-top: 1rem;
+  margin-bottom: 1rem ;
+  font-size: 0.85rem;
+  color: #7a7a7a;
+  font-style: italic;
+}
+
+.home-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+
+.tag {
+  background-color: #decdf2;
+  color: #4b007d;
+  font-size: 0.75rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 15px;
+}
+
+
+@media (max-width: 1024px) {
+  .post-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .post-list {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-section h1 {
+    font-size: 2rem;
+  }
+
+  .hero-section p {
+    font-size: 1rem;
+  }
+
+  .hero-section button {
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+  }
+}
