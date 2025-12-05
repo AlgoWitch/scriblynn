@@ -219,15 +219,11 @@ function Messages() {
   if (!isLoggedIn) {
     return (
       <div className="messages-page">
-        <div className="messages-header">
-          <h1>Your Conversations</h1>
-          <p>Stay connected. Chat, catch up, collaborate.</p>
-        </div>
-        <div className="soft-auth-msg">
-          <h2>Please Login or Sign up</h2>
-          <p>Messages are private. Sign in to see your conversations!</p>
+        <div className="login-prompt-card">
+          <h2>✨ Join the Conversation</h2>
+          <p>Sign up or log in to chat with friends, join groups, and share your thoughts.</p>
           <Link to="/login">
-            <button className="soft-auth-btn">Login / Signup</button>
+            <button className="primary-btn">Login / Signup</button>
           </Link>
         </div>
       </div>
