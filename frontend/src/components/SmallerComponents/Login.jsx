@@ -26,6 +26,7 @@ const Login = () => {
 
       // Redirect to feed
       navigate('/feed');
+      window.location.reload()
     } catch (err) {
       setError(err.response?.data?.message || 'Invalid email or password');
     } finally {

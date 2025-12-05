@@ -15,6 +15,10 @@ const postSchema = new mongoose.Schema({
     ref: 'User',
     required: true
   },
+  community: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Community'
+  },
   anonymous: {
     type: Boolean,
     default: false
@@ -29,6 +33,25 @@ const postSchema = new mongoose.Schema({
       ref: 'User'
     },
     text: String,
+    likes: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }],
+    replies: [{
+      user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+      },
+      text: String,
+      likes: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+      }],
+      createdAt: {
+        type: Date,
+        default: Date.now
+      }
+    }],
     createdAt: {
       type: Date,
       default: Date.now

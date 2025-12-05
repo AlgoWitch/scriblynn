@@ -28,6 +28,7 @@ const Navbar = () => {
     setUser(null);
     setMenuOpen(false);
     navigate('/');
+    window.location.reload();
   };
 
   return (

@@ -129,6 +129,27 @@
   .resources-resource-card a:hover {
     text-decoration: underline;
   }
+
+  /* Action buttons inside resource card */
+  .resources-resource-card .btn {
+    padding: 0.4rem 0.7rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    margin-right: 0.4rem;
+  }
+  .resources-resource-card button {
+    padding: 0.35rem 0.7rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    background-color: #ffd6ec;
+    color: #6a0b5a;
+  }
+  .resources-resource-card button:hover { opacity: 0.9 }
+  .resources-resource-card button[disabled] { opacity: 0.6; cursor: not-allowed }
   
   /* 🔒 Login Prompt */
   .resources-login-message-container {

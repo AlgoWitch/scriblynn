@@ -16,11 +16,19 @@ function ProfilePage() {
   const [editingPost, setEditingPost] = useState(null);
   const [editContent, setEditContent] = useState('');
 
+  // Profile editing state
+  const [showEditProfile, setShowEditProfile] = useState(false);
+  const [editProfileData, setEditProfileData] = useState({
+    username: '',
+    bio: '',
+    profilePicture: ''
+  });
+
   useEffect(() => {
     // Check if user is logged in
     const token = localStorage.getItem('token');
     const userData = localStorage.getItem('user');
-    
+
     if (token && userData) {
       const parsedUser = JSON.parse(userData);
       setUser(parsedUser);
@@ -32,13 +40,10 @@ function ProfilePage() {
 
   const fetchUserPosts = async (userId) => {
     try {
-      // Get all posts and filter by current user
-      const response = await postAPI.getAllPosts();
-      const userPosts = response.data.filter(post => post.author._id === userId);
+      // Fetch posts by author from backend (already sorted by date)
+      const response = await postAPI.getAllPosts(1, 100, '', '', userId);
+      const userPosts = response.data.posts || [];
       setPosts(userPosts);
-      console.log('User posts fetched:', userPosts);
-      console.log('Anonymous posts:', userPosts.filter(p => p.anonymous));
-      console.log('Named posts:', userPosts.filter(p => !p.anonymous));
     } catch (error) {
       console.error('Failed to fetch posts:', error);
     } finally {
@@ -89,6 +94,29 @@ function ProfilePage() {
     }
   };
 
+  const handleEditProfileClick = () => {
+    setEditProfileData({
+      username: user.username,
+      bio: user.bio || '',
+      profilePicture: user.profilePicture || ''
+    });
+    setShowEditProfile(true);
+  };
+
+  const handleProfileUpdate = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await authAPI.updateProfile(editProfileData);
+      setUser(res.data);
+      localStorage.setItem('user', JSON.stringify(res.data));
+      setShowEditProfile(false);
+    } catch (error) {
+      console.error('Failed to update profile:', error);
+      const errorMessage = error.response?.data?.message || 'Failed to update profile';
+      alert(errorMessage);
+    }
+  };
+
   if (loading) {
     return (
       <div className="profile-page">
@@ -113,9 +141,6 @@ function ProfilePage() {
     );
   }
 
-  // Filter posts (for now showing all named posts, anonymous feature can be added later)
-  const postsToShow = posts;
-
   // Separate posts by anonymous status
   const namedPosts = posts.filter((post) => !post.anonymous);
   const anonymousPosts = posts.filter((post) => post.anonymous);
@@ -132,19 +157,59 @@ function ProfilePage() {
   return (
     <div className="profile-page">
       <div className="profile-header">
-        <img 
-          src={user.profilePicture || defaultProfilePic} 
-          alt="profile" 
+        <img
+          src={user.profilePicture || defaultProfilePic}
+          alt="profile"
           onError={(e) => { e.target.src = defaultProfilePic; }}
         />
         <h2>{user.username}</h2>
         <p>{user.bio || 'A passionate writer and thinker.'}</p>
+        <button className="primary-btn" onClick={handleEditProfileClick} style={{ marginTop: '1rem' }}>
+          Edit Profile
+        </button>
         <div className="profile-stats">
           <span><strong>{posts.length}</strong> posts</span>
           <span><strong>{user.followers?.length || 0}</strong> followers</span>
           <span><strong>{user.following?.length || 0}</strong> following</span>
         </div>
       </div>
+
+      {showEditProfile && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <h3>Edit Profile</h3>
+            <form onSubmit={handleProfileUpdate}>
+              <div className="form-group">
+                <label>Username</label>
+                <input
+                  type="text"
+                  value={editProfileData.username}
+                  onChange={(e) => setEditProfileData({ ...editProfileData, username: e.target.value })}
+                />
+              </div>
+              <div className="form-group">
+                <label>Bio</label>
+                <textarea
+                  value={editProfileData.bio}
+                  onChange={(e) => setEditProfileData({ ...editProfileData, bio: e.target.value })}
+                />
+              </div>
+              <div className="form-group">
+                <label>Profile Picture URL</label>
+                <input
+                  type="text"
+                  value={editProfileData.profilePicture}
+                  onChange={(e) => setEditProfileData({ ...editProfileData, profilePicture: e.target.value })}
+                />
+              </div>
+              <div className="modal-actions">
+                <button type="button" onClick={() => setShowEditProfile(false)}>Cancel</button>
+                <button type="submit" className="primary-btn">Save</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
 
       {/* Create Post Button */}
       <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
@@ -169,9 +234,8 @@ function ProfilePage() {
 
       {/* Posts */}
       <div className="profile-posts">
-        <h3 style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-          {activeTab === 'named' ? 'My Named Posts' : 'My Anonymous Posts'}
-        </h3>
+        {/* Removed headings as requested */}
+
         {displayPosts.length === 0 ? (
           <p style={{ textAlign: 'center', padding: '2rem' }}>
             No {activeTab} posts yet. Create your first post!

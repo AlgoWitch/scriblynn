@@ -8,13 +8,21 @@ const messageSchema = new mongoose.Schema({
   },
   recipient: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
+    ref: 'User'
+  },
+  conversationId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Conversation'
   },
   content: {
-    type: String,
-    required: true
+    type: String
   },
+  mediaType: {
+    type: String,
+    enum: ['text', 'image', 'video'],
+    default: 'text'
+  },
+  mediaUrl: String,
   read: {
     type: Boolean,
     default: false

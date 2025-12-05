@@ -1,60 +1,123 @@
 
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../SmallerComponents/AuthContext';
-import userData from '../../data/userData.json';
 import { Link } from 'react-router-dom';
+import { communityAPI } from '../../utils/api';
 import CreateCommunityButton from '../SmallerComponents/CreateCommunityButton';
 import './Communities.css';
 
 function Communities() {
-  const { isLoggedIn } = useContext(AuthContext);
+  const { isLoggedIn, currentUser } = useContext(AuthContext);
   const [activeTab, setActiveTab] = useState(isLoggedIn ? 'subscribed' : 'recommended');
   const [searchTerm, setSearchTerm] = useState('');
-  const [createdCommunities, setCreatedCommunities] = useState(userData.createdCommunities || []);
-  const [subscribedCommunities] = useState(userData.likedCommunities || []);
+
+  const [allCommunitiesList, setAllCommunitiesList] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
+
   const [showModal, setShowModal] = useState(false);
   const [editingCommunity, setEditingCommunity] = useState(null);
-  const [menuOpenId, setMenuOpenId] = useState(null); 
+  const [menuOpenId, setMenuOpenId] = useState(null);
 
-  const recommendedCommunities = [
-    { id: 101, name: 'Bookworms United', description: 'Share reviews, swap reads.' },
-    { id: 102, name: 'Fitness & Wellness', description: 'Chasing health goals!' },
-    { id: 103, name: 'Plant Parents', description: 'Nature lovers unite.' },
-    { id: 104, name: 'Art & Doodles', description: 'Share your art.' },
-  ];
+  // Fetch communities from backend
+  useEffect(() => {
+    setPage(1);
+    fetchCommunities(1, true);
+  }, [activeTab, searchTerm, isLoggedIn, currentUser]);
 
-  const handleSearch = () => {
-    // Optional search logic
-  };
+  const fetchCommunities = async (pageNum = 1, reset = false) => {
+    try {
+      setLoading(true);
 
-  const handleCreateCommunity = (newCommunity) => {
-    setCreatedCommunities((prev) => {
-      const exists = prev.find((c) => c.id === newCommunity.id);
-      if (exists) {
-        return prev.map((c) => (c.id === newCommunity.id ? newCommunity : c));
+      let userId = '';
+      if (isLoggedIn && currentUser) {
+        userId = currentUser._id || currentUser.id;
       }
-      return [newCommunity, ...prev];
-    });
-    setShowModal(false);
-    setEditingCommunity(null);
+
+      // If tab is restricted but user not logged in, don't fetch (or fetch empty)
+      if (!isLoggedIn && (activeTab === 'created' || activeTab === 'subscribed')) {
+        setAllCommunitiesList([]);
+        setHasMore(false);
+        setLoading(false);
+        return;
+      }
+
+      const res = await communityAPI.getAllCommunities(pageNum, 8, searchTerm, activeTab, userId);
+      const newCommunities = res.data.communities || [];
+
+      if (reset || pageNum === 1) {
+        setAllCommunitiesList(newCommunities);
+      } else {
+        setAllCommunitiesList(prev => [...prev, ...newCommunities]);
+      }
+
+      if (newCommunities.length < 8 || pageNum >= res.data.totalPages) {
+        setHasMore(false);
+      } else {
+        setHasMore(true);
+      }
+    } catch (err) {
+      console.error('Could not load communities from backend', err);
+      if (pageNum === 1) setAllCommunitiesList([]);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const handleDeleteCommunity = (id) => {
-    setCreatedCommunities((prev) => prev.filter((comm) => comm.id !== id));
-    setMenuOpenId(null);
+  const handleLoadMore = () => {
+    const nextPage = page + 1;
+    setPage(nextPage);
+    fetchCommunities(nextPage);
   };
 
-  const filterCommunities = (communities) =>
-    communities?.filter((comm) =>
-      comm.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      comm.description.toLowerCase().includes(searchTerm.toLowerCase())
-    ) || [];
-
-  const allCommunities = {
-    created: createdCommunities,
-    subscribed: subscribedCommunities,
-    recommended: recommendedCommunities,
+  const handleCreateCommunity = async (newCommunity) => {
+    try {
+      if (editingCommunity) {
+        // Update existing
+        const res = await communityAPI.updateCommunity(editingCommunity._id, {
+          name: newCommunity.name,
+          description: newCommunity.description
+        });
+        setAllCommunitiesList(prev => prev.map(c => c._id === res.data._id ? res.data : c));
+      } else {
+        // Create new
+        const res = await communityAPI.createCommunity({
+          name: newCommunity.name,
+          description: newCommunity.description
+        });
+        // If we are in 'created' or 'recommended' (and it's ours), prepend?
+        // Actually, if we create one, we are admin, so it should appear in 'created'.
+        if (activeTab === 'created') {
+          setAllCommunitiesList(prev => [res.data, ...prev]);
+        } else {
+          // Switch to created tab to see it? Or just let it be.
+          // For now, let's switch tab to created
+          setActiveTab('created');
+        }
+      }
+      setShowModal(false);
+      setEditingCommunity(null);
+    } catch (err) {
+      console.error('Failed to save community', err);
+      alert('Failed to save community');
+    }
   };
+
+  const handleDeleteCommunity = async (id) => {
+    if (!window.confirm('Are you sure you want to delete this community?')) return;
+    try {
+      await communityAPI.deleteCommunity(id);
+      setAllCommunitiesList(prev => prev.filter(c => c._id !== id));
+      setMenuOpenId(null);
+    } catch (err) {
+      console.error('Failed to delete community', err);
+      alert('Failed to delete community');
+    }
+  };
+
+  // Removed client-side categorization and filtering
+  const filtered = allCommunitiesList;
 
   const renderLoginPrompt = (type) => {
     const message =
@@ -79,12 +142,16 @@ function Communities() {
       return renderLoginPrompt(type);
     }
 
-    const filtered = filterCommunities(communities);
+    if (loading) return <div style={{ textAlign: 'center', padding: '2rem' }}>Loading...</div>;
+
+    if (filtered.length === 0) {
+      return <div style={{ textAlign: 'center', padding: '2rem' }}>No communities found in this section.</div>;
+    }
 
     return (
       <div className="communities-list">
         {filtered.map((community) => (
-          <div key={community.id} className="communities-card">
+          <div key={community._id} className="communities-card">
             <div className="communities-card-header">
               <h3>{community.name}</h3>
               {type === 'created' && (
@@ -92,12 +159,12 @@ function Communities() {
                   <button
                     className="communities-dots"
                     onClick={() =>
-                      setMenuOpenId((prev) => (prev === community.id ? null : community.id))
+                      setMenuOpenId((prev) => (prev === community._id ? null : community._id))
                     }
                   >
                     ⋮
                   </button>
-                  {menuOpenId === community.id && (
+                  {menuOpenId === community._id && (
                     <div className="communities-dropdown">
                       <button
                         onClick={() => {
@@ -108,14 +175,16 @@ function Communities() {
                       >
                         Edit
                       </button>
-                      <button onClick={() => handleDeleteCommunity(community.id)}>Delete</button>
+                      <button onClick={() => handleDeleteCommunity(community._id)}>Delete</button>
                     </div>
                   )}
                 </div>
               )}
             </div>
             <p>{community.description}</p>
-            <button className="communities-visit-btn">Visit</button>
+            <Link to={`/communities/${community._id}`}>
+              <button className="communities-visit-btn">Visit</button>
+            </Link>
           </div>
         ))}
       </div>
@@ -134,7 +203,6 @@ function Communities() {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <button className="communities-search-btn" onClick={handleSearch}>Search</button>
           {isLoggedIn && (
             <button
               className="communities-create-btn"
@@ -171,7 +239,14 @@ function Communities() {
       </div>
 
       <div className="communities-tab-content">
-        {renderCommunities(allCommunities[activeTab], activeTab)}
+        {renderCommunities(null, activeTab)}
+        {hasMore && !searchTerm && (
+          <div style={{ textAlign: 'center', marginTop: '2rem', paddingBottom: '2rem' }}>
+            <button className="primary-btn" onClick={handleLoadMore} disabled={loading}>
+              {loading ? 'Loading...' : 'Load More'}
+            </button>
+          </div>
+        )}
       </div>
 
       {showModal && (

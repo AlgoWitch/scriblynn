@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { resourceAPI } from '../../utils/api';
 import './ShareResourceButton.css';
 
 const ShareResourceButton = ({ onShare }) => {
@@ -9,16 +10,28 @@ const ShareResourceButton = ({ onShare }) => {
     link: '',
     type: 'Book',
   });
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setResource({ ...resource, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (resource.title && resource.link && resource.type) {
-      onShare(resource);
-      setResource({ title: '', description: '', link: '', type: 'Book' });
-      setModalOpen(false);
+      setLoading(true);
+      try {
+        const response = await resourceAPI.createResource(resource);
+        onShare(response.data);
+        setResource({ title: '', description: '', link: '', type: 'Book' });
+        setModalOpen(false);
+      } catch (error) {
+        console.error('Failed to create resource:', error);
+        // Show server-provided message when available to aid debugging
+        const serverMessage = error?.response?.data?.message || error.message || 'Failed to share resource. Please try again.';
+        alert(serverMessage);
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
@@ -62,8 +75,10 @@ const ShareResourceButton = ({ onShare }) => {
             </select>
 
             <div className="modal-buttons">
-              <button onClick={handleSubmit} className="post-btn">Share</button>
-              <button onClick={() => setModalOpen(false)} className="cancel-btn">Cancel</button>
+              <button onClick={handleSubmit} className="post-btn" disabled={loading}>
+                {loading ? 'Sharing...' : 'Share'}
+              </button>
+              <button onClick={() => setModalOpen(false)} className="cancel-btn" disabled={loading}>Cancel</button>
             </div>
           </div>
         </div>

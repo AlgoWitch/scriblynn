@@ -14,6 +14,7 @@ import Signup from './components/SmallerComponents/Signup';
 import HomePage from './components/Pages/HomePage';
 import Feed from './components/Pages/Feed';
 import Communities from './components/Pages/Communities';
+import CommunityDetail from './components/Pages/CommunityDetail';
 import Profile from './components/Pages/Profile';
 import Messages from './components/Pages/Messages';
 import Resources from './components/Pages/Resources';
@@ -31,6 +32,7 @@ const AppLayout = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/communities" element={<Communities />} />
+        <Route path="/communities/:id" element={<CommunityDetail />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/messages" element={<Messages />} />
         <Route path="/about" element={<AboutPage />} />

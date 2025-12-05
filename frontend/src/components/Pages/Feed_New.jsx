@@ -2,16 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { postAPI } from '../../utils/api';
 import './Feed.css';
 
-const tags = [
-  'Life', 'College', 'MentalHealth', 'Productivity', 'Friendship',
-  'Love', 'Stress', 'Success', 'Failure', 'DailyThoughts', 'Gratitude', 'Growth'
-];
+// availableTags will be derived from posts after fetching
 
 const Feed = () => {
   const [posts, setPosts] = useState([]);
+  const [availableTags, setAvailableTags] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedTag, setSelectedTag] = useState('');
 
   useEffect(() => {
     fetchPosts();
@@ -21,6 +20,14 @@ const Feed = () => {
     try {
       const response = await postAPI.getAllPosts();
       setPosts(response.data);
+      // derive tags from posts (normalize and remove empties)
+      const tagSet = new Set();
+      (response.data || []).forEach(p => (p.tags || []).forEach(t => {
+        if (t == null) return;
+        const tt = String(t).trim();
+        if (tt) tagSet.add(tt);
+      }));
+      setAvailableTags([...tagSet].sort((a, b) => a.localeCompare(b)));
     } catch (err) {
       setError('Failed to load posts');
       console.error(err);
@@ -42,11 +49,23 @@ const Feed = () => {
     }
   };
 
-  const filteredPosts = posts.filter(post => 
-    post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    post.content.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    post.author.username.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  // Apply tag filter (if any) and search query
+  const filteredPosts = posts
+    .filter(post => {
+      if (!post) return false;
+      if (selectedTag) {
+        return (post.tags || []).some(t => String(t || '').trim().toLowerCase() === String(selectedTag || '').trim().toLowerCase());
+      }
+      return true;
+    })
+    .filter(post => {
+      const q = String(searchQuery || '').toLowerCase();
+      if (!q) return true;
+      const title = String(post.title || '').toLowerCase();
+      const content = String(post.content || '').toLowerCase();
+      const author = String(post.author?.username || '').toLowerCase();
+      return title.includes(q) || content.includes(q) || author.includes(q);
+    });
 
   if (loading) {
     return (
@@ -81,9 +100,22 @@ const Feed = () => {
         </div>
 
         <div className="tags-section">
-          {tags.map(tag => (
-            <button key={tag} className="tag">{tag}</button>
-          ))}
+          {availableTags.length === 0 ? (
+            <div style={{ color: '#777' }}>No tags yet</div>
+          ) : (
+            availableTags.map(tag => (
+              <button
+                key={tag}
+                className={`tag ${selectedTag && String(selectedTag).toLowerCase() === String(tag).toLowerCase() ? 'active' : ''}`}
+                onClick={() => setSelectedTag(prev => (prev && String(prev).toLowerCase() === String(tag).toLowerCase()) ? '' : tag)}
+              >
+                {tag}
+              </button>
+            ))
+          )}
+          {selectedTag && (
+            <button className="tag clear-tag" onClick={() => setSelectedTag('')}>Clear</button>
+          )}
         </div>
 
         <div className="main-feed-wrapper">
@@ -101,15 +133,20 @@ const Feed = () => {
                   <p>{post.content.substring(0, 150)}{post.content.length > 150 ? '...' : ''}</p>
                   <div style={{ marginTop: '10px' }}>
                     {post.tags && post.tags.map((tag, index) => (
-                      <span key={index} style={{ 
-                        backgroundColor: '#e0e7ff', 
-                        padding: '2px 8px', 
-                        borderRadius: '12px', 
-                        fontSize: '0.8rem',
-                        marginRight: '5px'
-                      }}>
-                        #{tag}
-                      </span>
+                        <span
+                          key={index}
+                          onClick={() => setSelectedTag(tag)}
+                          style={{
+                            backgroundColor: '#e0e7ff',
+                            padding: '2px 8px',
+                            borderRadius: '12px',
+                            fontSize: '0.8rem',
+                            marginRight: '5px',
+                            cursor: 'pointer'
+                          }}
+                        >
+                          #{String(tag).trim()}
+                        </span>
                     ))}
                   </div>
                   <div style={{ marginTop: '10px', display: 'flex', gap: '15px', alignItems: 'center' }}>

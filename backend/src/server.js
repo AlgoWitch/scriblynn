@@ -4,6 +4,9 @@ import cors from 'cors';
 import connectDB from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
 import postRoutes from './routes/postRoutes.js';
+import resourceRoutes from './routes/resourceRoutes.js';
+import communityRoutes from './routes/communityRoutes.js';
+import messageRoutes from './routes/messageRoutes.js';
 
 dotenv.config();
 
@@ -29,6 +32,9 @@ app.use(express.urlencoded({ extended: true }));
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/posts', postRoutes);
+app.use('/api/communities', communityRoutes);
+app.use('/api/messages', messageRoutes);
+app.use('/api/resources', resourceRoutes);
 
 // Health check
 app.get('/', (req, res) => {
